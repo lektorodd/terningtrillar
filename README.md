@@ -13,7 +13,7 @@ For differensiering kan ein legge til at alle terningane *må* brukast for kvart
 
 ## Korleis?
 
-1) Trykk inn på `terningtrillar.html`
+1) Trykk inn på [`terningtrillar.html`](https://github.com/lektorodd/terningtrillar/blob/main/terningtrillar.html)
 2) Trykk på nedlastingssymbolet (download raw file)
 3) Lagre fila på datamaskina di og opne i nettlesar
 4) Vel rett tal grupper og terningar og trill så lenge du orkar. 
