@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="nn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terningtrillar for Grupper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Grunnleggjande stilar for sida */
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, #1d2b4a, #2c3e50);
+            color: #f8f9fa;
+            box-sizing: border-box;
+        }
+
+        /* Hovudbehaldar for appen */
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 960px;
+            text-align: center;
+            background-color: rgba(23, 31, 46, 0.7);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Gøymer element */
+        .hidden {
+            display: none;
+        }
+
+        /* Stil for oppsettsskjemaet */
+        #setup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #adb5bd;
+        }
+        .form-group input {
+            padding: 10px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            width: 80px;
+            text-align: center;
+            background-color: rgba(0,0,0,0.2);
+            color: #f8f9fa;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #4dabf7;
+            box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.3);
+        }
+        
+        /* Behaldar for alle gruppene */
+        #game-board {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        #game-board.two-columns {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .group-container {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            background-color: rgba(0,0,0,0.15);
+        }
+        
+        .group-container.single-group {
+            border: none;
+            padding: 0;
+            background-color: transparent;
+        }
+        
+        .group-container h2 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: #ced4da;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .dice-row {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .die {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+        }
+        
+        .die svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+        }
+
+        @keyframes roll {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.2); }
+            50% { transform: rotate(180deg) scale(1); }
+            75% { transform: rotate(270deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .rolling {
+            animation: roll 0.6s ease-out;
+        }
+
+        /* Stil for knappegruppa i botn */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+        
+        .btn {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-size: 200% auto;
+        }
+        
+        .btn-primary {
+            font-size: 1.2rem;
+            padding: 14px 28px;
+            background-image: linear-gradient(to right, #4dabf7 0%, #da77f2 51%, #4dabf7 100%);
+            box-shadow: 0 4px 20px rgba(142, 139, 248, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(142, 139, 248, 0.4);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+        
+        /* Stil for ikon-knappar */
+        .btn-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #495057;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-icon:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .btn-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: #f8f9fa;
+        }
+
+        /* Usynleg element for sentrering */
+        .ghost-button {
+            width: 44px; /* Same breidd som ikon-knappen */
+            visibility: hidden;
+        }
+        
+        #restart-button {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+        }
+        
+        footer {
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button id="restart-button" class="btn btn-icon hidden" title="Innstillingar">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.6-114.14 277.99-277.99zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.75 18.75-49.16 0-67.91z"/></svg>
+        </button>
+        <h1>Terningtrillar</h1>
+
+        <div id="setup-container">
+            <form id="setup-form">
+                <div class="form-group">
+                    <label for="num-groups">Tal på grupper</label>
+                    <input type="number" id="num-groups" value="1" min="1" max="10">
+                </div>
+                <div class="form-group">
+                    <label for="num-dice">Terningar per gruppe</label>
+                    <input type="number" id="num-dice" value="5" min="1" max="10">
+                </div>
+                <button type="submit" class="btn btn-primary">Start spel</button>
+            </form>
+        </div>
+
+        <div id="game-container" class="hidden">
+            <div id="game-board"></div>
+            <div class="button-group">
+                <div class="ghost-button"></div>
+                <button id="roll-button" class="btn btn-primary">Trill terningar</button>
+                <button id="clear-button" class="btn btn-icon" title="Tøm">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Torodd F. Ottestad // lektorodd
+    </footer>
+
+    <script>
+        // Hentar element frå HTML
+        const setupContainer = document.getElementById('setup-container');
+        const setupForm = document.getElementById('setup-form');
+        const gameContainer = document.getElementById('game-container');
+        const gameBoard = document.getElementById('game-board');
+        const rollButton = document.getElementById('roll-button');
+        const restartButton = document.getElementById('restart-button');
+        const clearButton = document.getElementById('clear-button');
+
+        // SVG-konstantar
+        const placeholderSVG = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="#343a40" stroke="#495057" stroke-width="3"/></svg>`;
+        const rollingSVG = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><text x="50" y="68" font-family="Poppins, sans-serif" font-size="50" text-anchor="middle" fill="#495057">?</text></svg>`;
+        const diceFacesSVG = [
+            `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><circle cx="50" cy="50" r="10" fill="black"/></svg>`,
+            `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><circle cx="25" cy="25" r="10" fill="black"/><circle cx="75" cy="75" r="10" fill="black"/></svg>`,
+            `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><circle cx="25" cy="25" r="10" fill="black"/><circle cx="50" cy="50" r="10" fill="black"/><circle cx="75" cy="75" r="10" fill="black"/></svg>`,
+            `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><circle cx="25" cy="25" r="10" fill="black"/><circle cx="75" cy="25" r="10" fill="black"/><circle cx="25" cy="75" r="10" fill="black"/><circle cx="75" cy="75" r="10" fill="black"/></svg>`,
+            `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><circle cx="25" cy="25" r="10" fill="black"/><circle cx="75" cy="25" r="10" fill="black"/><circle cx="50" cy="50" r="10" fill="black"/><circle cx="25" cy="75" r="10" fill="black"/><circle cx="75" cy="75" r="10" fill="black"/></svg>`,
+            `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><circle cx="25" cy="25" r="10" fill="black"/><circle cx="75" cy="25" r="10" fill="black"/><circle cx="25" cy="50" r="10" fill="black"/><circle cx="75" cy="50" r="10" fill="black"/><circle cx="25" cy="75" r="10" fill="black"/><circle cx="75" cy="75" r="10" fill="black"/></svg>`
+        ];
+
+        function createGameBoard(numGroups, numDice) {
+            gameBoard.innerHTML = '';
+            
+            if (parseInt(numGroups) > 3) {
+                gameBoard.classList.add('two-columns');
+            } else {
+                gameBoard.classList.remove('two-columns');
+            }
+
+            for (let i = 1; i <= numGroups; i++) {
+                const groupContainer = document.createElement('div');
+                groupContainer.classList.add('group-container');
+                if (numGroups == 1) {
+                    groupContainer.classList.add('single-group');
+                }
+                if (numGroups > 1) {
+                    const groupTitle = document.createElement('h2');
+                    groupTitle.textContent = `Gruppe ${i}`;
+                    groupContainer.appendChild(groupTitle);
+                }
+                const diceRow = document.createElement('div');
+                diceRow.classList.add('dice-row');
+                for (let j = 0; j < numDice; j++) {
+                    const dieElement = document.createElement('div');
+                    dieElement.classList.add('die');
+                    dieElement.innerHTML = placeholderSVG;
+                    diceRow.appendChild(dieElement);
+                }
+                groupContainer.appendChild(diceRow);
+                gameBoard.appendChild(groupContainer);
+            }
+        }
+
+        function rollAllDice() {
+            const allDice = document.querySelectorAll('.die');
+            allDice.forEach(die => {
+                die.classList.remove('rolling');
+                void die.offsetWidth;
+                die.innerHTML = rollingSVG;
+                die.classList.add('rolling');
+                const randomNumber = Math.floor(Math.random() * 6);
+                setTimeout(() => {
+                    die.innerHTML = diceFacesSVG[randomNumber];
+                    die.classList.remove('rolling');
+                }, 600);
+            });
+        }
+        
+        function clearBoard() {
+            const allDice = document.querySelectorAll('.die');
+            allDice.forEach(die => {
+                die.innerHTML = placeholderSVG;
+                die.classList.remove('rolling');
+            });
+        }
+
+        function restartGame() {
+            gameContainer.classList.add('hidden');
+            setupContainer.classList.remove('hidden');
+            restartButton.classList.add('hidden');
+            gameBoard.innerHTML = '';
+            gameBoard.classList.remove('two-columns');
+        }
+
+        setupForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const numGroups = document.getElementById('num-groups').value;
+            const numDice = document.getElementById('num-dice').value;
+            createGameBoard(numGroups, numDice);
+            setupContainer.classList.add('hidden');
+            gameContainer.classList.remove('hidden');
+            restartButton.classList.remove('hidden');
+        });
+
+        rollButton.addEventListener('click', rollAllDice);
+        restartButton.addEventListener('click', restartGame);
+        clearButton.addEventListener('click', clearBoard);
+
+    </script>
+
+</body>
+</html>
