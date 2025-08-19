@@ -2,6 +2,8 @@
 Enkel HTML-app for terningstrilling. Perfekt for deg som er lei av å leita etter nok terningar... 
 Fin å bruka i oppstartsaktivitetar der det trengs tilfeldige tal. 
 
+<img width="1472" height="1007" alt="image" src="https://github.com/user-attachments/assets/8caad40a-26df-4c2f-aaa9-d891d4ab7159" />
+
 ## Forslag til aktivitet
 
 Del elevane inn i grupper. Trill 5 terningar per gruppe. Gruppene skal bruka ulike rekneoperasjonar for å koma fram til 1, 2, 3, ... 
