@@ -5,6 +5,10 @@ Fin å bruka i oppstartsaktivitetar der det trengs tilfeldige tal.
 ![2025-08-20 at 11 24 skjermbilete Microsoft Edge](https://github.com/user-attachments/assets/875f6d6e-f12a-48ce-934b-9cf0660e9649)
 
 >[!TIP]
+>### Nettversjon
+>[`lektorodd.no/terning.html`](https://lektorodd.no/terning.html)
+>
+> ### Køyre lokalt
 > 1) Trykk inn på [`terningtrillar.html`](https://github.com/lektorodd/terningtrillar/blob/main/terningtrillar.html)
 > 2) Trykk på nedlastingssymbolet oppe til høgre (download raw file)
 > 3) Lagre fila på datamaskina di og opne i nettlesar
