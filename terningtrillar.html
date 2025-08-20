@@ -6,11 +6,11 @@
     <title>Terningtrillar for Grupper</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         /* Grunnleggjande stilar for sida */
         body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -18,8 +18,8 @@
             min-height: 100vh;
             margin: 0;
             padding: 2rem 1rem;
-            background: linear-gradient(135deg, #1d2b4a, #2c3e50);
-            color: #f8f9fa;
+            background: #2c2c2c;
+            color: #ecf0f1;
             box-sizing: border-box;
         }
 
@@ -29,11 +29,11 @@
             width: 100%;
             max-width: 960px;
             text-align: center;
-            background-color: rgba(23, 31, 46, 0.7);
+            background-color: rgba(59, 59, 59, 0.7);
             padding: 2.5rem;
             border-radius: 24px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(236, 240, 241, 0.1);
             backdrop-filter: blur(10px);
         }
 
@@ -41,7 +41,7 @@
             margin-top: 0;
             margin-bottom: 2rem;
             font-size: 2.5rem;
-            color: #ffffff;
+            color: #ecf0f1;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
         
@@ -71,38 +71,39 @@
         }
         .form-group input {
             padding: 10px 14px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(236, 240, 241, 0.2);
             border-radius: 8px;
             font-size: 1.1rem;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             width: 80px;
             text-align: center;
-            background-color: rgba(0,0,0,0.2);
-            color: #f8f9fa;
+            background-color: #3b3b3b;
+            color: #ecf0f1;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
         .form-group input:focus {
             outline: none;
-            border-color: #4dabf7;
-            box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.3);
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
         }
         
         /* Behaldar for alle gruppene */
         #game-board {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
         }
         
         #game-board.two-columns {
             grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem 2rem;
         }
         
         .group-container {
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(236, 240, 241, 0.1);
             border-radius: 16px;
-            padding: 1.5rem;
-            background-color: rgba(0,0,0,0.15);
+            padding: 1rem;
+            background-color: rgba(44, 44, 44, 0.4);
         }
         
         .group-container.single-group {
@@ -112,27 +113,26 @@
         }
         
         .group-container h2 {
-            margin-top: 0;
-            margin-bottom: 1.5rem;
+            margin: 0 0 0.75rem 0;
             color: #ced4da;
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 500;
         }
 
         .dice-row {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .die {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 12px;
+            border-radius: 10px;
         }
         
         .die svg {
@@ -163,7 +163,7 @@
         }
         
         .btn {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 500;
             border: none;
             border-radius: 12px;
@@ -176,14 +176,14 @@
         .btn-primary {
             font-size: 1.2rem;
             padding: 14px 28px;
-            background-image: linear-gradient(to right, #4dabf7 0%, #da77f2 51%, #4dabf7 100%);
-            box-shadow: 0 4px 20px rgba(142, 139, 248, 0.3);
+            background-image: linear-gradient(90deg, #3498db, #9E52FF);
+            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.3);
         }
         
         .btn-primary:hover {
             background-position: right center;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(142, 139, 248, 0.4);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
         }
 
         .btn:active {
@@ -198,24 +198,24 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background-color: #495057;
+            background-color: #3b3b3b;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
         .btn-icon:hover {
-            background-color: #5a6268;
+            background-color: #495057;
             transform: translateY(-2px);
         }
         
         .btn-icon svg {
             width: 22px;
             height: 22px;
-            fill: #f8f9fa;
+            fill: #ecf0f1;
         }
 
         /* Usynleg element for sentrering */
         .ghost-button {
-            width: 44px; /* Same breidd som ikon-knappen */
+            width: 44px;
             visibility: hidden;
         }
         
@@ -225,11 +225,28 @@
             right: 1.5rem;
         }
         
+        /* ENDRING: Oppdatert stil for footer */
         footer {
             margin-top: 2rem;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.9rem;
             text-align: center;
+        }
+        footer a {
+            font-family: 'JetBrains Mono', monospace;
+            color: rgba(236, 240, 241, 0.5);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s ease;
+        }
+        footer a:hover {
+            color: #ecf0f1;
+        }
+        footer svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
         }
     </style>
 </head>
@@ -267,8 +284,12 @@
         </div>
     </div>
 
+    <!-- ENDRING: Oppdatert footer med lenke og logo -->
     <footer>
-        Torodd F. Ottestad // lektorodd
+        <a href="https://github.com/lektorodd/terningtrillar" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+            lektorodd
+        </a>
     </footer>
 
     <script>
@@ -282,8 +303,8 @@
         const clearButton = document.getElementById('clear-button');
 
         // SVG-konstantar
-        const placeholderSVG = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="#343a40" stroke="#495057" stroke-width="3"/></svg>`;
-        const rollingSVG = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><text x="50" y="68" font-family="Poppins, sans-serif" font-size="50" text-anchor="middle" fill="#495057">?</text></svg>`;
+        const placeholderSVG = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="#3b3b3b" stroke="#495057" stroke-width="3"/></svg>`;
+        const rollingSVG = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><text x="50" y="68" font-family="Inter, sans-serif" font-size="50" text-anchor="middle" fill="#495057">?</text></svg>`;
         const diceFacesSVG = [
             `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><circle cx="50" cy="50" r="10" fill="black"/></svg>`,
             `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" rx="10" fill="white" stroke="black" stroke-width="3"/><circle cx="25" cy="25" r="10" fill="black"/><circle cx="75" cy="75" r="10" fill="black"/></svg>`,
@@ -295,8 +316,9 @@
 
         function createGameBoard(numGroups, numDice) {
             gameBoard.innerHTML = '';
+            const useTwoColumns = parseInt(numGroups) > 3;
             
-            if (parseInt(numGroups) > 3) {
+            if (useTwoColumns) {
                 gameBoard.classList.add('two-columns');
             } else {
                 gameBoard.classList.remove('two-columns');
@@ -305,14 +327,19 @@
             for (let i = 1; i <= numGroups; i++) {
                 const groupContainer = document.createElement('div');
                 groupContainer.classList.add('group-container');
+
                 if (numGroups == 1) {
                     groupContainer.classList.add('single-group');
                 }
+                
+                // Lag tittel (viss meir enn éi gruppe)
                 if (numGroups > 1) {
                     const groupTitle = document.createElement('h2');
                     groupTitle.textContent = `Gruppe ${i}`;
                     groupContainer.appendChild(groupTitle);
                 }
+
+                // Lag terning-rad
                 const diceRow = document.createElement('div');
                 diceRow.classList.add('dice-row');
                 for (let j = 0; j < numDice; j++) {
